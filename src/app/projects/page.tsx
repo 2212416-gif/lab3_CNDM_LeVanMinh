@@ -4,53 +4,63 @@ const projects = [
   {
     id: "schoolshop",
     title: "SchoolShop E-commerce",
-    description: "Hệ thống thương mại điện tử full-stack với đầy đủ tính năng quản lý sản phẩm, giỏ hàng và tối ưu hóa trải nghiệm người dùng.",
-    tech: ["Next.JS", "Tailwind CSS", "API", "Database"],
+    description: "Hệ thống thương mại điện tử full-stack với đầy đủ tính năng quản lý sản phẩm, giỏ hàng, thanh toán và tối ưu hóa trải nghiệm người dùng.",
+    tech: ["Next.js", "Tailwind CSS", "PostgreSQL", "Prisma"],
     status: "Đang phát triển",
   },
   {
     id: "restaurant-management",
     title: "Restaurant Management System",
-    description: "Phân tích tài chính (NPV, ROI, Payback) và tài liệu quản lý dự án cho hệ thống nhà hàng.",
-    tech: ["Excel", "Project Management", "Financial Analysis"],
+    description: "Công cụ phân tích tài chính (NPV, ROI, Payback) và tài liệu quản lý dự án nhằm số hóa toàn diện quy trình vận hành nhà hàng.",
+    tech: ["Excel", "Project Management", "Data Analytics"],
     status: "Hoàn thành",
   },
   {
     id: "image-classification",
-    title: "Image Classification & Clustering Models",
-    description: "Cài đặt thuật toán K-Means, DBSCAN và mô hình CNN để phân loại dữ liệu và hình ảnh.",
-    tech: ["Python", "Machine Learning", "Orange Data Mining"],
+    title: "AI Clustering & Classification",
+    description: "Hệ thống Machine Learning sử dụng thuật toán K-Means, DBSCAN và mô hình học sâu CNN để tự động phân loại hình ảnh.",
+    tech: ["Python", "TensorFlow", "scikit-learn"],
     status: "Hoàn thành",
   }
 ];
 
 export default function ProjectsPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-8">Dự án của tôi</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="max-w-5xl mx-auto space-y-10">
+      <div className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 inline-block">
+          Dự án Thực tế
+        </h1>
+        <p className="text-slate-400 text-lg">Những ứng dụng và hệ thống mình đã xây dựng.</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
-          <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-            <h2 className="text-xl font-bold mb-2">
-              <Link href={`/projects/${project.id || '1'}`} className="hover:text-blue-600">
+          <div key={index} className="glass rounded-xl p-6 flex flex-col h-full glass-hover group">
+            <div className="flex justify-between items-start mb-4">
+              <div className={`text-xs font-semibold px-2.5 py-1 rounded-full ${project.status === 'Hoàn thành' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}`}>
+                {project.status}
+              </div>
+              <svg className="w-5 h-5 text-slate-500 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </div>
+            
+            <h2 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all">
+              <Link href={`/projects/${project.id || '1'}`} className="focus:outline-none">
+                <span className="absolute inset-0" aria-hidden="true"></span>
                 {project.title}
               </Link>
             </h2>
-            <p className="text-gray-600 mb-4">{project.description}</p>
-            <div className="mb-4">
-              <span className="text-sm font-semibold text-gray-500 mr-2">Công nghệ:</span>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {project.tech.map((t, i) => (
-                  <span key={i} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <span className={`text-sm px-2 py-1 rounded ${project.status === 'Hoàn thành' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                {project.status}
-              </span>
+            
+            <p className="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+              {project.description}
+            </p>
+            
+            <div className="flex flex-wrap gap-2 mt-auto">
+              {project.tech.map((t, i) => (
+                <span key={i} className="bg-slate-800 text-slate-300 border border-slate-700 text-xs px-2.5 py-1 rounded-md">
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
         ))}

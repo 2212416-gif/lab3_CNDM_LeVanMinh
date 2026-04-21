@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Le Van Minh | Software Engineer",
@@ -13,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
+    <html lang="vi" className={cn("font-sans", geist.variable)}>
       <body className="antialiased text-slate-100 flex flex-col min-h-screen">
         <header className="fixed top-0 w-full z-50 glass border-b-0 border-white/5">
           <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -25,6 +29,7 @@ export default function RootLayout({
               <Link href="/about" className="hover:text-cyan-400 transition-colors">Giới thiệu</Link>
               <Link href="/projects" className="hover:text-cyan-400 transition-colors">Dự án</Link>
               <Link href="/blog" className="hover:text-cyan-400 transition-colors">Blog</Link>
+              <Link href="/guestbook" className="hover:text-cyan-400 transition-colors">Lưu bút</Link>
               <Link href="/contact" className="hover:text-cyan-400 transition-colors">Liên hệ</Link>
             </nav>
           </div>

@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lab 3 — Next.js: Data Fetching, API Routes & UI
 
-## Getting Started
+> **Môn học:** Các Công nghệ Mới trong Phát triển Phần mềm  
+> **Sinh viên:** Lê Văn Minh — 2212416  
+> **Lớp:** CTK46
 
-First, run the development server:
+## 📋 Mô tả
+
+Bài thực hành 3 nâng cấp website Portfolio/Blog từ Lab 2 với các tính năng:
+
+| Tính năng | Mô tả |
+|-----------|-------|
+| **Data Fetching** | Fetch dữ liệu từ JSONPlaceholder API (server-side, ISR) |
+| **API Routes** | REST API cho Guestbook (GET/POST/DELETE) |
+| **Server Actions** | Xử lý form Guestbook và Contact với Zod validation |
+| **shadcn/ui** | Component library: Button, Card, Input, Badge, Separator |
+
+## 🚀 Các trang
+
+- `/` — Trang chủ
+- `/about` — Giới thiệu
+- `/blog` — Danh sách bài viết (từ JSONPlaceholder API, 10 bài)
+- `/blog/[id]` — Chi tiết bài viết + tác giả + bình luận
+- `/projects` — Dự án (shadcn/ui Card + Badge)
+- `/guestbook` — Sổ lưu bút (Server Actions + Zod)
+- `/contact` — Liên hệ (Server Actions + Zod)
+
+## 🛠️ API Endpoints
+
+| Method | URL | Mô tả |
+|--------|-----|-------|
+| GET | `/api/guestbook` | Lấy danh sách lời nhắn |
+| GET | `/api/guestbook?limit=5` | Lấy 5 lời nhắn gần nhất |
+| POST | `/api/guestbook` | Thêm lời nhắn mới |
+| DELETE | `/api/guestbook/[id]` | Xóa lời nhắn |
+| PUT | `/api/guestbook/[id]` | Cập nhật lời nhắn |
+
+## ✅ Checklist hoàn thành
+
+- [x] Trang Blog fetch dữ liệu từ JSONPlaceholder API (không còn hardcoded)
+- [x] Trang chi tiết Blog (`/blog/[id]`) với bài viết + tác giả + bình luận
+- [x] API Routes Guestbook: GET, POST, DELETE, PUT hoạt động đúng
+- [x] Trang Guestbook: danh sách + form gửi lời nhắn
+- [x] Form Guestbook: Server Actions + Zod validation
+- [x] Trang Contact: form với Server Actions + Zod validation
+- [x] Cài đặt shadcn/ui thành công
+- [x] Sử dụng ≥3 shadcn/ui components (Button, Card, Input, Badge, Separator, Label, Textarea)
+- [x] Nâng cấp UI: Blog, Projects, Guestbook với shadcn/ui
+- [x] Conventional Commits
+- [x] Push lên GitHub
+
+## ⚙️ Chạy dự án
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Truy cập: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Test API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Xem danh sách lời nhắn
+curl http://localhost:3000/api/guestbook
 
-## Learn More
+# Thêm lời nhắn mới
+curl -X POST http://localhost:3000/api/guestbook \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Test User", "message": "Hello!"}'
 
-To learn more about Next.js, take a look at the following resources:
+# Xóa lời nhắn
+curl -X DELETE http://localhost:3000/api/guestbook/1
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔗 Links
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **GitHub Lab 2:** [lab2_CNDM_LeVanMinh](https://github.com/2212416-gif/lab2_CNDM_LeVanMinh)
+- **GitHub Lab 3:** [lab3_CNDM_LeVanMinh](https://github.com/2212416-gif/lab3_CNDM_LeVanMinh)

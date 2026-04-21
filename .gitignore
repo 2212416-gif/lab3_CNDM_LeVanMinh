@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp/generated files
+temp_pdf_parser/
+pdf_text.txt
+Lab3_src_copy/
+Lab3_pkg_copy.json
+Lab3_tsconfig_copy.json
+Lab3_nextconfig_copy.ts
